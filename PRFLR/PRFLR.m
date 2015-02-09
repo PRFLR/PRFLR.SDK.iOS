@@ -13,7 +13,7 @@
 #include <mach/mach_time.h>
 #include <unistd.h>
 
-@implementation NSString (PRLRTrim)
+@implementation NSString (PRFLRTrim)
 
 - (NSString *)substringByTrimmingToLength:(NSUInteger)length
 {
