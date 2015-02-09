@@ -112,7 +112,6 @@ const NSUInteger kOverflowCount = 100;
                         [info substringByTrimmingToLength:32],
                         [_apiKey substringByTrimmingToLength:32]];
     NSString *msg = [params componentsJoinedByString:@"|"];
-    NSLog(@"Sending message %@", msg);
     NSData *data = [msg dataUsingEncoding:NSUTF8StringEncoding];
     [_udpSocket sendData:data withTimeout:-1 tag:0];
 }
