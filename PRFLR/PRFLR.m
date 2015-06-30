@@ -42,12 +42,20 @@ const NSUInteger kOverflowCount = 100;
     if (!self) {
         return nil;
     }
+    NSArray *components = [apiKey componentsSeparatedByString:@"@"];
+    NSAssert(components.count == 2, @"API Key should consist of 2 parts separated by '@'");
+    apiKey = components[0];
+    components = [components[1] componentsSeparatedByString:@":"];
+    NSAssert(components.count == 2, @"Invalid format of destination - should be 'host:port'");
+    NSString *host = components[0];
+    uint16_t port = [components[1] integerValue];
+    NSAssert(port != 0, @"Invalid port");
     _source = source;
     _apiKey = apiKey;
     _timers = [NSMutableDictionary dictionaryWithCapacity:kOverflowCount];
     _udpSocket = [[GCDAsyncUdpSocket alloc] initWithDelegate:self
                                                delegateQueue:dispatch_get_main_queue()];
-    [_udpSocket connectToHost:@"prflr.org" onPort:4000 error:nil];
+    [_udpSocket connectToHost:host onPort:port error:nil];
     return self;
 }
 

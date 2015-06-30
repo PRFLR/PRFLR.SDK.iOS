@@ -21,7 +21,7 @@
 
 - (IBAction)testProfile:(id)sender
 {
-    PRFLR *profiler = [[PRFLR alloc] initWithSource:@"ExampleApp" apiKey:@"YOUR_API_KEY"];
+    PRFLR *profiler = [[PRFLR alloc] initWithSource:@"ExampleApp" apiKey:@"YOUR_API_KEY@prflr.org:4000"];
     [profiler begin:@"timerName"];
     [profiler end:@"timerName" info:@"info"];
 }
